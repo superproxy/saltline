@@ -9,15 +9,11 @@ import shutil
 import sys
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parent.parent
-FNOS_WWW = REPO / "Saltline-fnos-1.0.0" / "project" / "Saltline" / "app" / "www"
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from paths import FNOS_DESKTOP_GAMES, FNOS_WWW, INTL_HTML, ORIGINAL_HTML, RELEASE, ZH_MOD_HTML  # noqa: E402
 
-INDEX = REPO / "index.html"
-GAMES = (
-    "盐线行动SALTLINE-原版.html",
-    "盐线行动SALTLINE-中文魔改版1.0.html",
-    "Saltline-International-1.0.html",
-)
+INDEX = RELEASE / "index.html"
+GAMES = FNOS_DESKTOP_GAMES
 
 HUB_IMAGES = (
     "gameplay-original.jpg",
@@ -41,37 +37,37 @@ FNOS_STYLE = """
     }
 """
 
-CARD_BLOCK = """            <article class="card has-thumb" data-play="盐线行动SALTLINE-原版.html">
-              <a class="card-thumb" href="盐线行动SALTLINE-原版.html" tabindex="-1" aria-hidden="true">
+CARD_BLOCK = f"""            <article class="card has-thumb" data-play="{ORIGINAL_HTML}">
+              <a class="card-thumb" href="{ORIGINAL_HTML}" tabindex="-1" aria-hidden="true">
                 <img src="gameplay-original.jpg" width="1948" height="1080" data-i18n-alt="shotOriginal" alt="原版" loading="lazy" decoding="async">
               </a>
               <div class="card-body">
                 <span class="tag muted" data-i18n="tagOriginal">原版</span>
                 <h3 data-i18n="cardOriginalTitle">原版</h3>
                 <p data-i18n="cardOriginalDesc">Felix 原作归档，英文界面，键鼠操作。</p>
-                <div class="actions"><a class="btn" href="盐线行动SALTLINE-原版.html" data-i18n="btnOriginal">进入</a></div>
+                <div class="actions"><a class="btn" href="{ORIGINAL_HTML}" data-i18n="btnOriginal">进入</a></div>
               </div>
             </article>
-            <article class="card has-thumb" data-play="盐线行动SALTLINE-中文魔改版1.0.html">
-              <a class="card-thumb" href="盐线行动SALTLINE-中文魔改版1.0.html" tabindex="-1" aria-hidden="true">
+            <article class="card has-thumb" data-play="{ZH_MOD_HTML}">
+              <a class="card-thumb" href="{ZH_MOD_HTML}" tabindex="-1" aria-hidden="true">
                 <img src="gameplay-63.jpg" width="1948" height="1080" data-i18n-alt="shotZh" alt="中文版" loading="lazy" decoding="async">
               </a>
               <div class="card-body">
                 <span class="tag muted" data-i18n="tagZhMod">中文版</span>
                 <h3 data-i18n="cardZhTitle">中文版</h3>
                 <p data-i18n="cardZhDesc">菜单、电台与任务目标中文化。</p>
-                <div class="actions"><a class="btn ghost" href="盐线行动SALTLINE-中文魔改版1.0.html" data-i18n="btnZh">进入</a></div>
+                <div class="actions"><a class="btn ghost" href="{ZH_MOD_HTML}" data-i18n="btnZh">进入</a></div>
               </div>
             </article>
-            <article class="card has-thumb" data-play="Saltline-International-1.0.html">
-              <a class="card-thumb" href="Saltline-International-1.0.html" tabindex="-1" aria-hidden="true">
+            <article class="card has-thumb" data-play="{INTL_HTML}">
+              <a class="card-thumb" href="{INTL_HTML}" tabindex="-1" aria-hidden="true">
                 <img src="gameplay-18.jpg" width="1948" height="1080" data-i18n-alt="shotIntl" alt="国际版" loading="lazy" decoding="async">
               </a>
               <div class="card-body">
                 <span class="tag muted" data-i18n="tagIntl">国际版</span>
                 <h3 data-i18n="cardIntlTitle">国际版</h3>
                 <p data-i18n="cardIntlDesc">13 种界面语言；设置内可切换。</p>
-                <div class="actions"><a class="btn ghost" href="Saltline-International-1.0.html" data-i18n="btnIntl">进入</a></div>
+                <div class="actions"><a class="btn ghost" href="{INTL_HTML}" data-i18n="btnIntl">进入</a></div>
               </div>
             </article>
 """
@@ -163,7 +159,7 @@ def main() -> int:
         print(f"missing {INDEX}", file=sys.stderr)
         return 1
     for name in GAMES:
-        path = REPO / name
+        path = RELEASE / name
         if not path.is_file():
             print(f"missing game file: {path}", file=sys.stderr)
             return 1
@@ -178,13 +174,13 @@ def main() -> int:
 
     manifest: list[str] = []
     for name in GAMES:
-        src = REPO / name
+        src = RELEASE / name
         dest = FNOS_WWW / name
         shutil.copy2(src, dest)
         manifest.append(f"{name}  {sha256_file(dest)}  {dest.stat().st_size}")
 
     for img in HUB_IMAGES:
-        src = REPO / img
+        src = RELEASE / img
         if src.is_file():
             dest = FNOS_WWW / img
             shutil.copy2(src, dest)

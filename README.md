@@ -1,71 +1,71 @@
-# 盐线 · 移动版（衍生迭代，非官方）
+# saltline
 
-这是 [superproxy/saltline](https://github.com/superproxy/saltline) 的成品源码入口。本仓库由仓库所有者授权公开保存，**不是官方版本**，也未声称已获得原作者的开源许可或再分发授权。授权状态仍待核实。
+非官方衍生合集 · 维护者 [superproxy](https://github.com/superproxy/saltline)
 
-正式入口名称是 **移动版**（`盐线-移动版.html`，ASCII 备份 `saltline-mobile.html`，二者内容相同）。该构建由**用户确认可用**；这不是仓库维护者在浏览器中的验收声明。
+对外只用 **`release/`**：本地静态服务或飞牛安装后，从首页选版本进入游戏。下图与 [release/index.html](release/index.html) 卡片配图一致。
 
-## 原作归属
+## 画面预览
 
-- 原作作者：[Felix Rieseberg](https://x.com/felixrieseberg)（@felixrieseberg）
-- 原帖：https://x.com/felixrieseberg/status/2119925633564463609
-- 公开提示词回复：https://x.com/felixrieseberg/status/2119927483994907024
-- 仓库内保留上述两帖的本地截图：`saltline-original-post.png`、`saltline-prompt-reply.png`（这是来源说明，不是本仓库各版本的游戏主界面截图）
-- 原作单文件：`盐线行动SALTLINE-原版.html`（由 `satline.html` 更名；SHA-256 `f34e6debbfa7526b72be2daa24595c2f195e102a7aede4f22e59138c99cd6852`）
+<table>
+  <tr>
+    <td align="center"><b>原版</b><br><code>盐线行动SALTLINE-原版.html</code></td>
+    <td align="center"><b>中文版</b><br><code>盐线行动SALTLINE-中文魔改版.html</code></td>
+    <td align="center"><b>国际版</b><br><code>Saltline-International.html</code></td>
+  </tr>
+  <tr>
+    <td><img src="release/gameplay-original.jpg" alt="原版游戏画面" width="100%"></td>
+    <td><img src="release/gameplay-63.jpg" alt="中文版游戏画面" width="100%"></td>
+    <td><img src="release/gameplay-18.jpg" alt="国际版游戏画面" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><b>手机魔改</b><br><code>盐线行动SALTLINE-手机魔改版.html</code></td>
+    <td align="center"><b>手机国际</b><br><code>盐线行动SALTLINE-手机国际版.html</code></td>
+    <td align="center"><b>NAS 合集</b><br><code>downloads/Saltline.fpk</code></td>
+  </tr>
+  <tr>
+    <td><img src="release/gameplay-40.jpg" alt="手机版游戏画面" width="100%"></td>
+    <td><img src="release/gameplay-63.jpg" alt="手机国际版游戏画面" width="100%"></td>
+    <td><img src="release/gameplay-40.jpg" alt="NAS 合集示意" width="100%"></td>
+  </tr>
+</table>
 
-导入时检查了原作与衍生 HTML：未发现 SPDX、LICENSE、Copyright、All rights reserved 或明确禁止再分发条款。因此本仓库**不附加自拟的 MIT 或其他开源许可证**，也不把全部版权宣称为本仓库所有者所有。源码中已有注释均原样保留。
+## `release/` 目录
 
-## 如何在本地运行
-
-不要用 `file://` 或聊天内置预览打开。在本仓库根目录：
-
-```bash
-python3 -m http.server 8765
+```
+release/
+├── index.html                     # 三端合集首页
+├── gameplay-original.jpg          # 上图配图资源
+├── gameplay-63.jpg
+├── gameplay-18.jpg
+├── gameplay-40.jpg
+├── 盐线行动SALTLINE-原版.html
+├── 盐线行动SALTLINE-中文魔改版.html    # 设置内可开无限弹药/生命（默认关）
+├── Saltline-International.html    # 13 种界面语言
+├── 盐线行动SALTLINE-手机魔改版.html
+├── 盐线行动SALTLINE-手机国际版.html
+└── downloads/
+    ├── Saltline.fpk               # 飞牛 NAS 安装包
+    ├── Saltline.fpk.sha256
+    └── Saltline.port
 ```
 
-然后用系统浏览器打开 <http://127.0.0.1:8765/>。首页顶部有三个 Tab：游戏合集、游戏介绍、来源与提示词，默认打开合集。合集中进入「移动版」。本页不嵌入启动游戏。
+| 场景 | 怎么做 |
+| --- | --- |
+| 本地试玩 | 见下方「本地预览」，打开首页点卡片 |
+| 飞牛 fnOS | 安装 `release/downloads/Saltline.fpk`；应用中心维护者 **superproxy**，项目页 [github.com/superproxy/saltline](https://github.com/superproxy/saltline) |
 
-合集首屏的游戏主界面真实截图目前仍缺。现有作者帖图、旧主页截图和调试失败画面都不会用来充数，确认真实截图后再补入。
+## 本地预览
 
-## 版本入口
+不要用 `file://`。在仓库根目录执行：
 
-正式产品线（首页合集「游戏合集」Tab）：
+```bash
+cd release && python3 -m http.server 8765
+```
 
-| 产品线 | 推荐入口 | 说明 |
-| --- | --- | --- |
-| 原作原版 | `盐线行动SALTLINE-原版.html` | Felix 原作归档，英文 SALTLINE |
-| 国际版 | `Saltline-International-1.0.html` | 中文魔改基底 + 13 语言（设置里切换） |
-| 中文魔改版 | `盐线行动SALTLINE-中文魔改版1.0.html` | 盐线行动中文化 |
-| 手机魔改版 | `盐线行动SALTLINE-手机魔改版1.2.html` / `saltline-mobile.html` | 中文 + 横屏触控优化 |
-| 手机国际版 | `盐线行动SALTLINE-手机国际版1.2.html` | 英文 + 移动触控优化 |
+浏览器打开 [http://127.0.0.1:8765/](http://127.0.0.1:8765/)。需要 WebGL；语言键 `sl-lang`（与国际版、首页一致）。
 
-扩展变体（中文魔改衍生）：`盐线行动SALTLINE-无限弹药1.0.html`、`盐线行动SALTLINE-中国港口1.0.html`；旧移动 1.0/1.1 见首页「扩展变体」。
+## 维护者：`tools/`
 
-命名规则：`盐线行动SALTLINE-{版本名}.html`。
+构建脚本在 `tools/`（含 `paths.py` 文件名约定、`build_intl_edition.py`、`build_fnos_www.py`、`tools/fnos/pack_fpk.py`）。打包后会更新 `release/downloads/Saltline.fpk`。
 
-历史短文件名仍保留：`盐线-移动版.html`、`盐线.html`、`盐线-辅助菜单版-v2.html`、`盐线-中国港口版-v3.html` 等，与上表对应构建内容相同或相近，非首页主推入口。
-
-本仓库不收录 v4、v5 及曾用名 v6 的历史文件名副本。v5 为已知无法启动的实验版。
-
-## 已知限制：WebGL
-
-游戏使用 WebGL（Three.js）渲染。在部分没有硬件 GPU、且未启用软件 WebGL 的环境中，浏览器会无法创建上下文。请在本机、已确认 WebGL 可用的系统浏览器中游玩。仓库内的脚本语法与链接检查**不能代替可玩验证**。
-
-## 安装包
-
-飞牛 FPK 等安装包是构建产物，不是源码。**安装包见本地交付，仓库未分发。** 本仓库不提供 FPK/APK，也不指向虚构的 GitHub Release 地址。
-
-## 公开提示词
-
-英文原文：
-
-> You know, you should also build me a FPS. Insanely detailed quality pls, something that looks visually like it can keep up with AAA. Make it small in scope (like a tiny level) but otherwise impressive photorealistic graphics
-
-中文译文：
-
-> 你也给我做一个第一人称射击游戏吧。细节质量要极高，视觉上能与 AAA 级游戏媲美。范围要小，比如只有一个很小的关卡，但画面仍要惊艳，具有照片级真实感。
-
-作者在原帖中称约 8 小时自主开发，并写明模型、声音、贴图均从零制作。公开片段不等于完整会话。
-
-## 首页
-
-`index.html` 已按批准设计使用三个 Tab（游戏合集 / 游戏介绍 / 来源与提示词），并支持 13 种界面语言（读取浏览器语言或 `localStorage` 的 `sl-lang`，与游戏国际版一致）。来源 Tab 含 Felix 原帖与提示词回复的本地截图、中英提示词，以及非官方、授权待核实的说明。游戏主界面真实截图仍缺，故合集首屏只标明暂缺，未使用作者帖图或失败画面替代。
+原作：Felix Rieseberg。本合集为衍生改编，授权状态待核实。

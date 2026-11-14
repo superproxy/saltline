@@ -20,17 +20,26 @@ from pathlib import Path
 from typing import Optional
 
 ROOT = Path(__file__).resolve().parent
-REPO = ROOT.parent
+REPO = ROOT.parent.parent
 PROJECT = ROOT / "project" / "Saltline"
 APP = PROJECT / "app"
 WWW = APP / "www"
 DIST = ROOT / "dist"
-DOWNLOADS = REPO / "downloads"
+DOWNLOADS = REPO / "release" / "downloads"
 VERSION = "1.0.3"
 TZ_NAME = "Asia/Shanghai"
 
 BUILD_INTL = REPO / "tools" / "build_intl_edition.py"
 BUILD_WWW = REPO / "tools" / "build_fnos_www.py"
+sys.path.insert(0, str(REPO / "tools"))
+from paths import (  # noqa: E402
+    FNOS_MAINTAINER,
+    FPK_NAME,
+    FPK_PORT_NAME,
+    FNOS_DESKTOP_GAMES,
+    INTL_HTML,
+    REPO_URL,
+)
 
 
 def sha256_file(path: Path) -> str:
@@ -71,7 +80,9 @@ display_name               = 盐线行动
 desc                       = 盐线行动：浏览器打开 index.html，卡片进入原版 / 中文版 / 国际版。端口 {port} 静态服务，请用系统浏览器访问。
 platform                   = all
 source                     = thirdparty
-maintainer                 = Local package
+maintainer                 = {FNOS_MAINTAINER}
+maintainer_url             = {REPO_URL}
+helpurl                    = {REPO_URL}
 desktop_uidir              = ui
 desktop_applaunchname      = Saltline.Application
 service_port               = {port}
@@ -79,7 +90,7 @@ checkport                  = true
 ctl_stop                   = true
 os_min_version             = 1.2.0
 disable_authorization_path = true
-changelog                  = 1.0.3：合集入口 + 国际版多语言修复；端口 {port}。\\n1.0.1：浏览器服务模式。\\n1.0.0：单文件 HTML 封装。
+changelog                  = 合集入口（原版 / 中文版 / 国际版）；端口 {port} 静态服务，系统浏览器访问。
 checksum                   = 
 """
 
@@ -295,11 +306,7 @@ def sync_sources() -> None:
         if not script.is_file():
             raise SystemExit(f"missing {script}")
         subprocess.run([sys.executable, str(script)], check=True, cwd=str(REPO))
-    for name in (
-        "盐线行动SALTLINE-原版.html",
-        "盐线行动SALTLINE-中文魔改版1.0.html",
-        "Saltline-International-1.0.html",
-    ):
+    for name in FNOS_DESKTOP_GAMES:
         if not (WWW / name).is_file():
             raise SystemExit(f"missing www/{name}")
 
@@ -419,7 +426,7 @@ def verify_fpk(fpk: Path, port: str, html_sha: str) -> None:
         ui = (app_dir / "ui" / "config").read_text("utf-8")
         if f'"port": "{port}"' not in ui:
             raise SystemExit("ui config port mismatch")
-        if not (app_dir / "www" / "Saltline-International-1.0.html").is_file():
+        if not (app_dir / "www" / INTL_HTML).is_file():
             raise SystemExit("intl html missing in package")
     finally:
         shutil.rmtree(work, ignore_errors=True)
@@ -436,22 +443,20 @@ def main() -> None:
     update_project(port)
 
     html_sha = sha256_file(WWW / "index.html")
-    dest = DIST / f"Saltline-{VERSION}.fpk"
+    dest = DIST / FPK_NAME
     pack_fpk(dest, port)
     sha = sha256_file(dest)
-    (DIST / f"Saltline-{VERSION}.fpk.sha256").write_text(
-        f"{sha}  Saltline-{VERSION}.fpk\n", encoding="utf-8"
-    )
-    (DIST / f"Saltline-{VERSION}.port").write_text(f"{port}\n", encoding="utf-8")
+    (DIST / f"{FPK_NAME}.sha256").write_text(f"{sha}  {FPK_NAME}\n", encoding="utf-8")
+    (DIST / FPK_PORT_NAME).write_text(f"{port}\n", encoding="utf-8")
 
     verify_fpk(dest, port, html_sha)
 
     shutil.copy2(dest, PROJECT / "Saltline.fpk")
     if not args.no_copy_downloads:
         DOWNLOADS.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(dest, DOWNLOADS / dest.name)
-        shutil.copy2(DIST / f"Saltline-{VERSION}.fpk.sha256", DOWNLOADS / f"Saltline-{VERSION}.fpk.sha256")
-        (DOWNLOADS / f"Saltline-{VERSION}.port").write_text(f"{port}\n", encoding="utf-8")
+        shutil.copy2(dest, DOWNLOADS / FPK_NAME)
+        shutil.copy2(DIST / f"{FPK_NAME}.sha256", DOWNLOADS / f"{FPK_NAME}.sha256")
+        (DOWNLOADS / FPK_PORT_NAME).write_text(f"{port}\n", encoding="utf-8")
 
     info = {
         "version": VERSION,
@@ -463,10 +468,10 @@ def main() -> None:
         "built_at": now_label(),
         "packer": "pack_fpk.py (native gzip tar)",
     }
-    (DIST / f"BUILD-INFO-{VERSION}.json").write_text(
+    (DIST / "BUILD-INFO.json").write_text(
         json.dumps(info, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print(f"OK Saltline-{VERSION}.fpk port={port} bytes={dest.stat().st_size} sha256={sha[:16]}…")
+    print(f"OK {FPK_NAME} port={port} bytes={dest.stat().st_size} sha256={sha[:16]}…")
     print(f"  {dest}")
     print(f"  NAS: http://<飞牛IP>:{port}/")
 

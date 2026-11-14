@@ -10,10 +10,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from paths import INTL_HTML, MOBILE_ZH_HTML, RELEASE, ZH_MOD_HTML  # noqa: E402
 from sl18n_pack import LANGS, LANG_NAMES, all_packs  # noqa: E402
 
-SRC = ROOT / "盐线行动SALTLINE-中文魔改版1.0.html"
-OUT = ROOT / "Saltline-International-1.0.html"
+SRC = RELEASE / ZH_MOD_HTML
+OUT = RELEASE / INTL_HTML
 
 RUNTIME_HEAD = """
 ;var SL18_LANGS=__SL18_LANGS__,SL18_NAMES=__SL18_NAMES__,SL18_PACK=__SL18_PACK__;
@@ -150,7 +151,7 @@ def sync_repo_link_in_html(path: Path) -> None:
 
 def build():
     sync_repo_link_in_html(SRC)
-    sync_repo_link_in_html(ROOT / "盐线行动SALTLINE-手机魔改版1.2.html")
+    sync_repo_link_in_html(RELEASE / MOBILE_ZH_HTML)
     text = patch_game_repo_link(SRC.read_text(encoding="utf-8"))
     packs = all_packs()
     runtime = (

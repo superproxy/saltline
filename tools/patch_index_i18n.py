@@ -8,11 +8,13 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / "index.html"
 
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from paths import RELEASE  # noqa: E402
+
+INDEX = RELEASE / "index.html"
 from index_i18n_pack import LANGS, all_index_packs, lang_names_json  # noqa: E402
 
 I18N_SCRIPT = r"""
@@ -198,38 +200,22 @@ def main():
         ('<p>Felix Rieseberg 原作归档，英文 SALTLINE，键鼠优先。</p>', '<p data-i18n="cardOriginalDesc">Felix Rieseberg 原作归档，英文 SALTLINE，键鼠优先。</p>'),
         ('>进入 原版</a>', ' data-i18n="btnOriginal">进入 原版</a>'),
         ('<span class="tag muted">国际版</span>', '<span class="tag muted" data-i18n="tagIntl">国际版</span>'),
-        ('<h3>国际版 1.0</h3>', '<h3 data-i18n="cardIntlTitle">国际版 1.0</h3>'),
+        ('<h3>国际版</h3>', '<h3 data-i18n="cardIntlTitle">国际版</h3>'),
         ('<p>中文魔改基底 + 13 种界面语言：中、英、法、日、阿、泰、俄、韩、藏、蒙、西、德、葡。</p>', '<p data-i18n="cardIntlDesc">中文魔改基底 + 13 种界面语言：中、英、法、日、阿、泰、俄、韩、藏、蒙、西、德、葡。</p>'),
         ('>进入 国际版</a>', ' data-i18n="btnIntl">进入 国际版</a>'),
         ('<span class="tag muted">中文魔改</span>', '<span class="tag muted" data-i18n="tagZhMod">中文魔改</span>'),
-        ('<h3>中文魔改版 1.0</h3>', '<h3 data-i18n="cardZhTitle">中文魔改版 1.0</h3>'),
+        ('<h3>中文版</h3>', '<h3 data-i18n="cardZhTitle">中文版</h3>'),
         ('<p>盐线行动中文化：菜单、电台、目标提示与港务文案。</p>', '<p data-i18n="cardZhDesc">盐线行动中文化：菜单、电台、目标提示与港务文案。</p>'),
         ('>进入 中文魔改</a>', ' data-i18n="btnZh">进入 中文魔改</a>'),
         ('<span class="tag">手机魔改</span>', '<span class="tag" data-i18n="tagMobile">手机魔改</span>'),
-        ('<h3>手机魔改版 1.2</h3>', '<h3 data-i18n="cardMobileTitle">手机魔改版 1.2</h3>'),
+        ('<h3>手机魔改版</h3>', '<h3 data-i18n="cardMobileTitle">手机魔改版</h3>'),
         ('<p>中文界面·横屏·双拇指触控·全屏与画质优化。</p>', '<p data-i18n="cardMobileDesc">中文界面·横屏·双拇指触控·全屏与画质优化。</p>'),
         ('>进入 手机魔改</a>', ' data-i18n="btnMobile">进入 手机魔改</a>'),
         ('>下载 HTML</a>', ' data-i18n="btnDownload">下载 HTML</a>'),
         ('<span class="tag">手机国际</span>', '<span class="tag" data-i18n="tagMobileIntl">手机国际</span>'),
-        ('<h3>手机国际版 1.2</h3>', '<h3 data-i18n="cardMobileIntlTitle">手机国际版 1.2</h3>'),
+        ('<h3>手机国际版</h3>', '<h3 data-i18n="cardMobileIntlTitle">手机国际版</h3>'),
         ('<p>英文 SALTLINE 界面，沿用手机魔改操控与横屏优化。</p>', '<p data-i18n="cardMobileIntlDesc">英文 SALTLINE 界面，沿用手机魔改操控与横屏优化。</p>'),
         ('>进入 手机国际</a>', ' data-i18n="btnMobileIntl">进入 手机国际</a>'),
-        ('<h2>扩展变体</h2>', '<h2 data-i18n="extH2">扩展变体</h2>'),
-        ('<p class="lede">在中文魔改基础上调整玩法或场景皮肤。</p>', '<p class="lede" data-i18n="extLede">在中文魔改基础上调整玩法或场景皮肤。</p>'),
-        ('<span class="tag muted">辅助</span>', '<span class="tag muted" data-i18n="tagAssist">辅助</span>'),
-        ('<h3>无限弹药 1.0</h3>', '<h3 data-i18n="cardAmmoTitle">无限弹药 1.0</h3>'),
-        ('<p>辅助菜单可开无限弹药与无敌（默认关闭）。</p>', '<p data-i18n="cardAmmoDesc">辅助菜单可开无限弹药与无敌（默认关闭）。</p>'),
-        ('href="盐线行动SALTLINE-无限弹药1.0.html">进入</a>', 'href="盐线行动SALTLINE-无限弹药1.0.html" data-i18n="btnEnter">进入</a>'),
-        ('<span class="tag muted">港口</span>', '<span class="tag muted" data-i18n="tagPort">港口</span>'),
-        ('<h3>中国港口 1.0</h3>', '<h3 data-i18n="cardChinaTitle">中国港口 1.0</h3>'),
-        ('<p>虚构中国港口货牌与标识，保留辅助开关。</p>', '<p data-i18n="cardChinaDesc">虚构中国港口货牌与标识，保留辅助开关。</p>'),
-        ('href="盐线行动SALTLINE-中国港口1.0.html">进入</a>', 'href="盐线行动SALTLINE-中国港口1.0.html" data-i18n="btnEnter">进入</a>'),
-        ('<span class="tag muted">历史</span>', '<span class="tag muted" data-i18n="tagHistory">历史</span>'),
-        ('<h3>手机魔改 1.0 / 1.1</h3>', '<h3 data-i18n="cardHistTitle">手机魔改 1.0 / 1.1</h3>'),
-        ('<p>旧版移动构建，仅供回溯。</p>', '<p data-i18n="cardHistDesc">旧版移动构建，仅供回溯。</p>'),
-        ('<h2>下载</h2>', '<h2 data-i18n="dlH2">下载</h2>'),
-        ('>飞牛包 1.0.2</a>', ' data-i18n="fpk102">飞牛包 1.0.2</a>'),
-        ('>飞牛包 1.0.1</a>', ' data-i18n="fpk101">飞牛包 1.0.1</a>'),
         ('<h2>游戏来源</h2>', '<h2 data-i18n="srcH2">游戏来源</h2>'),
         ('<p>Saltline（盐线）是 Felix Rieseberg 创作的微型第一人称射击游戏。</p>', '<p data-i18n="srcP1">Saltline（盐线）是 Felix Rieseberg 创作的微型第一人称射击游戏。</p>'),
         ('<li>原帖：', '<li><span data-i18n="srcPost">原帖：</span>'),

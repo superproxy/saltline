@@ -4,6 +4,8 @@ Desktop.ini
 *.tmp
 *~
 dist/
+tools/fnos/dist/
+tools/fnos/project/Saltline/Saltline.fpk
 _staging-*/
 .playwright-mcp/
 backups/
