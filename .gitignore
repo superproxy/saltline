@@ -5,3 +5,7 @@ Desktop.ini
 *~
 dist/
 _staging-*/
+.playwright-mcp/
+backups/
+__pycache__/
+*.pyc
