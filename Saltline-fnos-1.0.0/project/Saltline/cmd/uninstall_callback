@@ -1,0 +1,5 @@
+#!/bin/bash
+
+### Called by fnOS application lifecycle hooks.
+
+exit 0

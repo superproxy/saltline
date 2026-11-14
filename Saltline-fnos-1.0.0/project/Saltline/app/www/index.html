@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="zh-CN" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>盐线行动｜游戏合集</title>
+  <meta name="description" content="盐线行动：电脑端、手机端、飞牛 NAS 三端合集，浏览器即玩。">
+  <meta property="og:title" content="盐线行动｜游戏合集">
+  <meta property="og:description" content="盐线行动（Saltline）港口 FPS：原版、中文版、国际版等。非官方改编。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="盐线行动｜游戏合集">
+  <meta name="twitter:description" content="盐线行动（Saltline）港口 FPS：原版、中文版、国际版等。非官方改编。">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "盐线行动｜游戏合集",
+        "inLanguage": "zh-CN",
+        "description": "盐线行动（Saltline）港口 FPS 合集：原作原版、国际版、中文魔改版、手机魔改版、手机国际版；另有无限弹药与中国港口等扩展变体。源自 Felix Rieseberg 原作。非官方改编，授权状态待核实。"
+      },
+      {
+        "@type": "VideoGame",
+        "name": "盐线行动",
+        "alternateName": ["Saltline", "盐线", "盐线行动"],
+        "genre": "FPS",
+        "gamePlatform": "WebBrowser",
+        "author": {
+          "@type": "Person",
+          "name": "Felix Rieseberg"
+        },
+        "description": "原作由 Felix Rieseberg 创作的微型第一人称射击游戏。本页为非官方改编，授权状态待核实。"
+      }
+    ]
+  }
+  </script>
+<script>
+  (function () {
+    try {
+      var n = (navigator.language || "en").toLowerCase();
+      var map = { zh: "zh-CN", ar: "ar" };
+      for (var p in map) if (n === p || n.indexOf(p + "-") === 0) {
+        document.documentElement.lang = map[p];
+        if (p === "ar") document.documentElement.dir = "rtl";
+        return;
+      }
+      var saved = localStorage.getItem("sl-lang");
+      if (saved === "zh") document.documentElement.lang = "zh-CN";
+      else if (saved) document.documentElement.lang = saved;
+      if (saved === "ar") document.documentElement.dir = "rtl";
+    } catch (e) {}
+  })();
+  </script>
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #0b0d0f;
+      --ink-2: #14181b;
+      --plate: #1a2024;
+      --bone: #e8e4da;
+      --bone-dim: rgba(232, 228, 218, .68);
+      --bone-faint: rgba(232, 228, 218, .22);
+      --signal: #ffb347;
+      --signal-hot: #ffc977;
+      --rust: #d2622a;
+      --steel: #8d9aa3;
+      --line: rgba(232, 228, 218, .16);
+      --ok: #9db89a;
+    }
+    * { box-sizing: border-box; }
+    img { max-width: 100%; height: auto; }
+    html, body { margin: 0; background: var(--ink); color: var(--bone); }
+    body {
+      font: 16px/1.55 system-ui, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+      min-height: 100%;
+    }
+    a { color: var(--signal); text-decoration: none; }
+    a:hover { color: var(--signal-hot); text-decoration: underline; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 28px 22px 64px; overflow-x: hidden; overflow-wrap: anywhere; }
+    .stripe {
+      height: 10px;
+      background: repeating-linear-gradient(-45deg, #0b0d0f, #0b0d0f 8px, #ffb347 8px, #ffb347 16px);
+    }
+    header.hero { padding: 22px 0 8px; }
+    .kicker {
+      color: var(--steel);
+      letter-spacing: .16em;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    h1 {
+      font-weight: 800;
+      font-size: clamp(36px, 6vw, 56px);
+      letter-spacing: .04em;
+      margin: 0 0 10px;
+      line-height: 1.05;
+    }
+    .lede { color: var(--bone-dim); margin: 0 0 14px; max-width: 42em; }
+    .note {
+      font-size: 13px;
+      color: var(--steel);
+      border-left: 3px solid var(--rust);
+      padding: 6px 0 6px 12px;
+      margin: 0 0 14px;
+    }
+    h2 {
+      font-size: 15px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin: 8px 0 14px;
+      font-weight: 700;
+    }
+    h2 span { color: var(--steel); letter-spacing: 0; text-transform: none; font-weight: 500; margin-left: 8px; }
+    .tablist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 18px 0 22px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      background: var(--ink-2);
+    }
+    .tablist [role="tab"] {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 8rem;
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--bone-dim);
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .tablist [role="tab"]:hover {
+      color: var(--bone);
+      text-decoration: none;
+    }
+    .tablist [role="tab"][aria-selected="true"]:hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
+    html.no-js [role="tabpanel"][hidden] {
+      display: block !important;
+    }
+    html.no-js [role="tabpanel"] + [role="tabpanel"] {
+      margin-top: 36px;
+    }
+    .tablist [role="tab"][aria-selected="true"] {
+      color: var(--ink);
+      background: var(--signal);
+      border-color: var(--signal);
+    }
+    .tablist [role="tab"]:focus-visible {
+      outline: 2px solid var(--signal-hot);
+      outline-offset: 2px;
+    }
+    @media (max-width: 520px) {
+      .tablist { overflow-x: auto; }
+    }
+    .grid, .version-grid {
+      display: grid;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .grid.cols-2 { grid-template-columns: 1fr; }
+    .version-grid { grid-template-columns: 1fr; }
+    @media (min-width: 600px) {
+      .grid.cols-2 { grid-template-columns: 1fr 1fr; }
+      .version-grid { grid-template-columns: 1fr 1fr; }
+      .version-grid > .card.latest { grid-column: 1 / -1; }
+    }
+    @media (min-width: 720px) {
+      .version-grid--hub { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      #platform-mobile .version-grid--hub { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100%;
+      background: linear-gradient(180deg, var(--plate), var(--ink-2));
+      border: 1px solid var(--line);
+      padding: 16px 16px 18px;
+    }
+    .card.latest { border-color: rgba(255, 179, 71, .45); }
+    .card .tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: .12em;
+      line-height: 1.2;
+      color: var(--ink);
+      background: var(--signal);
+      padding: 2px 7px;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .card .tag.muted { background: var(--steel); }
+    .hub-section { margin: 0 0 36px; }
+    .section-lede {
+      margin: -6px 0 14px;
+      color: var(--bone-dim);
+      font-size: 14px;
+      max-width: 40em;
+    }
+    .card.has-thumb { padding: 0; overflow: hidden; }
+    .card-thumb {
+      display: block;
+      margin: 0;
+      background: #000;
+      border-bottom: 1px solid var(--line);
+      line-height: 0;
+    }
+    .card-thumb img {
+      width: 100%;
+      height: auto;
+      max-height: 168px;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+    .card.has-thumb .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; flex: 1; }
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+      min-height: 0;
+    }
+    .card p {
+      margin: 0;
+      color: var(--bone-dim);
+      font-size: 13.5px;
+      line-height: 1.5;
+      flex: 1 1 auto;
+    }
+    .meta { font-size: 12px; color: var(--steel); margin: 0 0 12px; word-break: break-all; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: stretch;
+      margin-top: auto;
+      padding-top: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      height: 44px;
+      min-height: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--signal);
+      color: var(--ink);
+      background: var(--signal);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .06em;
+      line-height: 1;
+      text-decoration: none;
+      max-width: 100%;
+    }
+    .btn:hover { background: var(--signal-hot); color: var(--ink); text-decoration: none; }
+    .btn.ghost {
+      background: transparent;
+      color: var(--bone);
+      border-color: var(--line);
+    }
+    .btn.ghost:hover { border-color: var(--signal); color: var(--signal); }
+    .panel {
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      padding: 18px 18px 8px;
+    }
+    .panel h3 { margin: 0 0 8px; font-size: 17px; }
+    .panel p, .panel li { color: var(--bone-dim); font-size: 14px; }
+    .panel ul { margin: 0 0 14px; padding-left: 1.2em; }
+    .hash { font-family: ui-monospace, "SFMono-Regular", Consolas, "Microsoft YaHei", monospace; font-size: 11.5px; color: var(--steel); word-break: break-all; }
+    blockquote {
+      margin: 0 0 14px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--signal);
+      background: rgba(255, 179, 71, .06);
+      color: var(--bone);
+      font-size: 14.5px;
+    }
+    .hero-shot {
+      margin: 0 0 22px;
+      min-height: 180px;
+      display: flex;
+      align-items: center;
+      background:
+        repeating-linear-gradient(-45deg, rgba(255,179,71,.04), rgba(255,179,71,.04) 8px, transparent 8px, transparent 16px),
+        var(--ink-2);
+      border: 1px dashed rgba(232, 228, 218, .28);
+      padding: 22px 20px;
+    }
+    .hero-shot .note { margin: 0; max-width: 46em; }
+    .shots { display: grid; gap: 16px; }
+    @media (min-width: 720px) { .shots { grid-template-columns: 1fr 1fr; } }
+    figure.shot {
+      margin: 0 0 16px;
+      background: #000;
+      border: 1px solid var(--line);
+    }
+    figure.shot a.thumb { display: block; }
+    figure.shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+    figcaption {
+      padding: 8px 10px 10px;
+      font-size: 12.5px;
+      color: var(--steel);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .92);
+      z-index: 20;
+      overflow: auto;
+      padding: 24px 16px 40px;
+    }
+    .lightbox:target { display: block; }
+    .lightbox .lb-inner { max-width: 980px; margin: 0 auto; }
+    .lightbox img { width: 100%; height: auto; display: block; background: #000; }
+    .lightbox .lb-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 0 12px;
+      color: var(--bone-dim);
+      font-size: 13px;
+    }
+
+    .lead-art {
+      margin: 0 0 22px;
+      background: #000;
+      border: 1px solid var(--line);
+    }
+    .lead-art img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .lang-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px 12px;
+      width: 100%;
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--bone-dim);
+    }
+    .lang-bar select { font: inherit; color: var(--bone); background: var(--ink-2); border: 1px solid var(--line); padding: 6px 10px; min-height: 40px; }
+    html[dir="rtl"] .lang-bar { justify-content: flex-start; }
+    footer.site-footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--steel);
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 10px;
+    }
+    footer.site-footer a { color: var(--bone-dim); text-decoration: none; }
+    footer.site-footer a:hover { color: var(--signal); text-decoration: underline; }
+    .footer-sep { opacity: .45; }
+
+  
+    body.fnos-hub #platform-desktop,
+    body.fnos-hub #platform-mobile { display: none !important; }
+    body.fnos-hub .hub-nas-download-wrap { display: none !important; }
+    body.fnos-hub .hub-nas-play { display: grid !important; }
+    body.fnos-hub .hub-nas-play[hidden] { display: grid !important; }
+    body.fnos-hub .card[data-play] {
+      cursor: pointer;
+      transition: border-color .15s ease;
+    }
+    body.fnos-hub .card[data-play]:hover {
+      border-color: rgba(255, 179, 71, .55);
+    }
+
+  </style>
+</head>
+<body class="fnos-hub">
+  <div class="stripe" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="hero">
+      <div class="lang-bar"><label id="index-lang-label" for="index-lang" data-i18n="langLabel">界面语言</label> <select id="index-lang" aria-labelledby="index-lang-label"></select></div>
+      <h1 data-i18n="siteTitle">盐线行动</h1>
+      <p class="lede" data-i18n="fnosHeroLede">飞牛 NAS：点击下方卡片进入游戏。</p>
+    </header>
+
+    <main class="hub" id="hub-main">
+      <section class="hub-section" id="platform-desktop" aria-labelledby="heading-desktop">
+        <h2 id="heading-desktop" data-i18n="secDesktop">电脑端</h2>
+        <p class="section-lede" data-i18n="secDesktopLede">键鼠桌面浏览器，原版 / 中文版 / 国际版（13 语）。</p>
+        <div class="version-grid version-grid--hub">
+          <article class="card has-thumb">
+            <a class="card-thumb" href="盐线行动SALTLINE-原版.html" tabindex="-1" aria-hidden="true">
+              <img src="gameplay-original.jpg" width="1948" height="1080" data-i18n-alt="shotOriginal" alt="原版游戏画面" loading="lazy" decoding="async">
+            </a>
+            <div class="card-body">
+              <span class="tag muted" data-i18n="tagOriginal">原版</span>
+              <h3 data-i18n="cardOriginalTitle">原版</h3>
+              <p data-i18n="cardOriginalDesc">Felix 原作归档，英文界面，键鼠操作。</p>
+              <div class="actions"><a class="btn" href="盐线行动SALTLINE-原版.html" data-i18n="btnOriginal">进入</a></div>
+            </div>
+          </article>
+          <article class="card has-thumb">
+            <a class="card-thumb" href="盐线行动SALTLINE-中文魔改版1.0.html" tabindex="-1" aria-hidden="true">
+              <img src="gameplay-63.jpg" width="1948" height="1080" data-i18n-alt="shotZh" alt="中文版游戏画面" loading="lazy" decoding="async">
+            </a>
+            <div class="card-body">
+              <span class="tag muted" data-i18n="tagZhMod">中文版</span>
+              <h3 data-i18n="cardZhTitle">中文版</h3>
+              <p data-i18n="cardZhDesc">菜单、电台与任务目标中文化，品牌「盐线行动」。</p>
+              <div class="actions"><a class="btn ghost" href="盐线行动SALTLINE-中文魔改版1.0.html" data-i18n="btnZh">进入</a></div>
+            </div>
+          </article>
+          <article class="card has-thumb">
+            <a class="card-thumb" href="Saltline-International-1.0.html" tabindex="-1" aria-hidden="true">
+              <img src="gameplay-18.jpg" width="1948" height="1080" data-i18n-alt="shotIntl" alt="国际版游戏画面" loading="lazy" decoding="async">
+            </a>
+            <div class="card-body">
+              <span class="tag muted" data-i18n="tagIntl">国际版</span>
+              <h3 data-i18n="cardIntlTitle">国际版</h3>
+              <p data-i18n="cardIntlDesc">13 种界面语言；设置内可切换，默认跟随浏览器。</p>
+              <div class="actions"><a class="btn ghost" href="Saltline-International-1.0.html" data-i18n="btnIntl">进入</a></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="hub-section" id="platform-mobile" aria-labelledby="heading-mobile">
+        <h2 id="heading-mobile" data-i18n="secMobile">手机端</h2>
+        <p class="section-lede" data-i18n="secMobileLede">横屏触控：双拇指移动与视角，中文或英文界面。</p>
+        <div class="version-grid version-grid--hub">
+          <article class="card has-thumb">
+            <a class="card-thumb" href="盐线行动SALTLINE-手机魔改版1.2.html" tabindex="-1" aria-hidden="true">
+              <img src="gameplay-40.jpg" width="1948" height="1080" data-i18n-alt="shotMobile" alt="手机版游戏画面" loading="lazy" decoding="async">
+            </a>
+            <div class="card-body">
+              <span class="tag" data-i18n="tagMobile">手机</span>
+              <h3 data-i18n="cardMobileTitle">手机魔改版</h3>
+              <p data-i18n="cardMobileDesc">中文界面，全屏与画质优化，专为触屏布局。</p>
+              <div class="actions">
+                <a class="btn" href="盐线行动SALTLINE-手机魔改版1.2.html" data-i18n="btnMobile">进入</a>
+                <a class="btn ghost" href="盐线行动SALTLINE-手机魔改版1.2.html" download="盐线行动SALTLINE-手机魔改版1.2.html" data-i18n="btnDownload">下载</a>
+              </div>
+            </div>
+          </article>
+          <article class="card has-thumb">
+            <a class="card-thumb" href="盐线行动SALTLINE-手机国际版1.2.html" tabindex="-1" aria-hidden="true">
+              <img src="gameplay-63.jpg" width="1948" height="1080" data-i18n-alt="shotMobileIntl" alt="手机国际版游戏画面" loading="lazy" decoding="async">
+            </a>
+            <div class="card-body">
+              <span class="tag" data-i18n="tagMobileIntl">手机国际</span>
+              <h3 data-i18n="cardMobileIntlTitle">手机国际版</h3>
+              <p data-i18n="cardMobileIntlDesc">英文 SALTLINE 界面，沿用触控与横屏优化。</p>
+              <div class="actions">
+                <a class="btn" href="盐线行动SALTLINE-手机国际版1.2.html" data-i18n="btnMobileIntl">进入</a>
+                <a class="btn ghost" href="盐线行动SALTLINE-手机国际版1.2.html" download="盐线行动SALTLINE-手机国际版1.2.html" data-i18n="btnDownload">下载</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="hub-section" id="platform-nas" aria-labelledby="heading-nas">
+        <h2 id="heading-nas" data-i18n="secNas">NAS 端</h2>
+        <p class="section-lede" data-i18n="fnosNasLede">本机已安装，直接选择版本进入。</p>
+        <div class="hub-nas-wrap">
+          <div class="version-grid version-grid--hub hub-nas-download-wrap">
+            <article class="card has-thumb hub-nas-download">
+              <a class="card-thumb" href="downloads/Saltline-1.0.3.fpk" tabindex="-1" aria-hidden="true">
+                <img src="gameplay-40.jpg" width="1948" height="1080" data-i18n-alt="shotNas" alt="NAS 合集示意画面" loading="lazy" decoding="async">
+              </a>
+              <div class="card-body">
+                <span class="tag" data-i18n="tagNas">飞牛</span>
+                <h3 data-i18n="cardNasTitle">飞牛安装包 1.0.3</h3>
+                <p data-i18n="cardNasDesc">合集首页 + 原版 / 中文版 / 国际版三文件；安装后用系统浏览器访问。</p>
+                <div class="actions">
+                  <a class="btn" href="downloads/Saltline-1.0.3.fpk" download="Saltline-1.0.3.fpk" data-i18n="btnFpk">下载 FPK</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="version-grid version-grid--hub version-grid--fnos-hub hub-nas-play" aria-label="游戏合集">
+            <article class="card has-thumb" data-play="盐线行动SALTLINE-原版.html">
+              <a class="card-thumb" href="盐线行动SALTLINE-原版.html" tabindex="-1" aria-hidden="true">
+                <img src="gameplay-original.jpg" width="1948" height="1080" data-i18n-alt="shotOriginal" alt="原版" loading="lazy" decoding="async">
+              </a>
+              <div class="card-body">
+                <span class="tag muted" data-i18n="tagOriginal">原版</span>
+                <h3 data-i18n="cardOriginalTitle">原版</h3>
+                <p data-i18n="cardOriginalDesc">Felix 原作归档，英文界面，键鼠操作。</p>
+                <div class="actions"><a class="btn" href="盐线行动SALTLINE-原版.html" data-i18n="btnOriginal">进入</a></div>
+              </div>
+            </article>
+            <article class="card has-thumb" data-play="盐线行动SALTLINE-中文魔改版1.0.html">
+              <a class="card-thumb" href="盐线行动SALTLINE-中文魔改版1.0.html" tabindex="-1" aria-hidden="true">
+                <img src="gameplay-63.jpg" width="1948" height="1080" data-i18n-alt="shotZh" alt="中文版" loading="lazy" decoding="async">
+              </a>
+              <div class="card-body">
+                <span class="tag muted" data-i18n="tagZhMod">中文版</span>
+                <h3 data-i18n="cardZhTitle">中文版</h3>
+                <p data-i18n="cardZhDesc">菜单、电台与任务目标中文化。</p>
+                <div class="actions"><a class="btn ghost" href="盐线行动SALTLINE-中文魔改版1.0.html" data-i18n="btnZh">进入</a></div>
+              </div>
+            </article>
+            <article class="card has-thumb" data-play="Saltline-International-1.0.html">
+              <a class="card-thumb" href="Saltline-International-1.0.html" tabindex="-1" aria-hidden="true">
+                <img src="gameplay-18.jpg" width="1948" height="1080" data-i18n-alt="shotIntl" alt="国际版" loading="lazy" decoding="async">
+              </a>
+              <div class="card-body">
+                <span class="tag muted" data-i18n="tagIntl">国际版</span>
+                <h3 data-i18n="cardIntlTitle">国际版</h3>
+                <p data-i18n="cardIntlDesc">13 种界面语言；设置内可切换。</p>
+                <div class="actions"><a class="btn ghost" href="Saltline-International-1.0.html" data-i18n="btnIntl">进入</a></div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span data-i18n="footer">盐线行动</span>
+      <span class="footer-sep" aria-hidden="true">·</span>
+      <a href="https://github.com/superproxy/saltline" target="_blank" rel="noopener noreferrer" data-i18n="footerRepo">GitHub · superproxy/saltline</a>
+    </footer>
+  </div>
+
+  <!-- index-i18n -->
+<script>
+  (function () {
+    var INDEX_LANGS = ["zh", "en", "fr", "ja", "ar", "th", "ru", "ko", "bo", "mn", "es", "de", "pt"];
+    var INDEX_NAMES = {"zh": "中文", "en": "English", "fr": "Français", "ja": "日本語", "ar": "العربية", "th": "ไทย", "ru": "Русский", "ko": "한국어", "bo": "བོད་ཡིག", "mn": "Монгол", "es": "Español", "de": "Deutsch", "pt": "Português"};
+    var INDEX_FNOS = {"zh":{"pageTitle":"盐线行动｜NAS","siteTitle":"盐线行动","footer":"盐线行动","fnosHeroLede":"点击卡片进入原版 / 中文版 / 国际版。","fnosNasLede":"本机已安装，直接选择版本进入。"},"en":{"pageTitle":"Saltline Ops | NAS","siteTitle":"Saltline Ops","footer":"Saltline Ops","fnosHeroLede":"Tap a card: original, Chinese, or international.","fnosNasLede":"Pick a build below."}};
+    (function(){for(var l in INDEX_FNOS){if(!INDEX_PACK[l])INDEX_PACK[l]={};Object.assign(INDEX_PACK[l],INDEX_FNOS[l]);}})();
+    var INDEX_PACK = {"zh":{"pageTitle":"盐线行动｜三端合集","metaDesc":"盐线行动：电脑端、手机端、飞牛 NAS 三端合集，浏览器即玩。","siteTitle":"盐线行动","heroLede":"港口 FPS 合集：电脑、手机、飞牛 NAS 三端入口，浏览器即玩。","langLabel":"界面语言","secDesktop":"电脑端","secDesktopLede":"键鼠桌面浏览器，原版 / 中文版 / 国际版（13 语）。","secMobile":"手机端","secMobileLede":"横屏触控：双拇指移动与视角，中文或英文界面。","secNas":"NAS 端","secNasLede":"飞牛应用：静态服务 + 浏览器打开合集；亦可在本页直接选版本。","tagOriginal":"原版","tagIntl":"国际版","tagZhMod":"中文版","tagMobile":"手机","tagMobileIntl":"手机国际","tagNas":"飞牛","cardOriginalTitle":"原版","cardOriginalDesc":"Felix 原作归档，英文界面，键鼠操作。","btnOriginal":"进入","cardIntlTitle":"国际版","cardIntlDesc":"13 种界面语言；设置内可切换，默认跟随浏览器。","btnIntl":"进入","cardZhTitle":"中文版","cardZhDesc":"菜单、电台与任务目标中文化，品牌「盐线行动」。","btnZh":"进入","cardMobileTitle":"手机魔改版","cardMobileDesc":"中文界面，全屏与画质优化，专为触屏布局。","btnMobile":"进入","btnDownload":"下载","cardMobileIntlTitle":"手机国际版","cardMobileIntlDesc":"英文 SALTLINE 界面，沿用触控与横屏优化。","btnMobileIntl":"进入","cardNasTitle":"飞牛安装包 1.0.3","cardNasDesc":"合集首页 + 原版 / 中文版 / 国际版三文件；安装后用系统浏览器访问。","btnFpk":"下载 FPK","shotOriginal":"原版游戏画面","shotZh":"中文版游戏画面","shotIntl":"国际版游戏画面","shotMobile":"手机版游戏画面","shotMobileIntl":"手机国际版游戏画面","shotNas":"NAS 合集示意画面","footer":"盐线行动","footerRepo":"GitHub · superproxy/saltline"},"en":{"pageTitle":"Saltline Ops | Desktop, Mobile & NAS","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"Saltline Ops","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"Saltline Ops","footerRepo":"GitHub · superproxy/saltline"},"fr":{"pageTitle":"OPÉRATION SALTLINE | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"OPÉRATION SALTLINE","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"OPÉRATION SALTLINE","footerRepo":"GitHub · superproxy/saltline"},"ja":{"pageTitle":"ソルトライン作戦 | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"ソルトライン作戦","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"ソルトライン作戦","footerRepo":"GitHub · superproxy/saltline"},"ar":{"pageTitle":"عملية سولتلاين | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"عملية سولتلاين","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"عملية سولتلاين","footerRepo":"GitHub · superproxy/saltline"},"th":{"pageTitle":"ปฏิบัติการซอลต์ไลน์ | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"ปฏิบัติการซอลต์ไลน์","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"ปฏิบัติการซอลต์ไลน์","footerRepo":"GitHub · superproxy/saltline"},"ru":{"pageTitle":"ОПЕРАЦИЯ SALTLINE | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"ОПЕРАЦИЯ SALTLINE","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"ОПЕРАЦИЯ SALTLINE","footerRepo":"GitHub · superproxy/saltline"},"ko":{"pageTitle":"솔트라인 작전 | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"솔트라인 작전","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"솔트라인 작전","footerRepo":"GitHub · superproxy/saltline"},"bo":{"pageTitle":"བརྒྱུད་སྣམ་དོན་སྤྱོད། | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"བརྒྱུད་སྣམ་དོན་སྤྱོད།","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"བརྒྱུད་སྣམ་དོན་སྤྱོད།","footerRepo":"GitHub · superproxy/saltline"},"mn":{"pageTitle":"SALTLINE ҮЙЛ АЖИЛЛАГАА | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"SALTLINE ҮЙЛ АЖИЛЛАГАА","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"SALTLINE ҮЙЛ АЖИЛЛАГАА","footerRepo":"GitHub · superproxy/saltline"},"es":{"pageTitle":"OPERACIÓN SALTLINE | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"OPERACIÓN SALTLINE","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"OPERACIÓN SALTLINE","footerRepo":"GitHub · superproxy/saltline"},"de":{"pageTitle":"OPERATION SALTLINE | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"OPERATION SALTLINE","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"OPERATION SALTLINE","footerRepo":"GitHub · superproxy/saltline"},"pt":{"pageTitle":"OPERAÇÃO SALTLINE | Saltline","metaDesc":"Saltline hub: desktop, mobile, and FnOS NAS builds — play in the browser.","siteTitle":"OPERAÇÃO SALTLINE","heroLede":"Port FPS collection: desktop, mobile, and FnOS NAS — open in your browser.","langLabel":"Language","secDesktop":"Desktop","secDesktopLede":"Keyboard & mouse: original, Chinese mod, international (13 languages).","secMobile":"Mobile","secMobileLede":"Landscape touch controls — Chinese or English UI.","secNas":"NAS","secNasLede":"FnOS app serves this hub; pick a build below after install.","tagOriginal":"Original","tagIntl":"Intl","tagZhMod":"Chinese","tagMobile":"Mobile","tagMobileIntl":"Mobile intl","tagNas":"FnOS","cardOriginalTitle":"Original","cardOriginalDesc":"Felix Rieseberg archive, English UI.","btnOriginal":"Play","cardIntlTitle":"International","cardIntlDesc":"13 UI languages; switch in Settings.","btnIntl":"Play","cardZhTitle":"Chinese mod","cardZhDesc":"Localized menus, radio, and objectives.","btnZh":"Play","cardMobileTitle":"Mobile mod","cardMobileDesc":"Chinese UI, fullscreen & touch layout.","btnMobile":"Play","btnDownload":"Download","cardMobileIntlTitle":"Mobile international","cardMobileIntlDesc":"English SALTLINE with mobile controls.","btnMobileIntl":"Play","cardNasTitle":"FnOS pack 1.0.3","cardNasDesc":"Hub + original / Chinese / intl HTML; open in system browser.","btnFpk":"Download FPK","shotOriginal":"Original gameplay","shotZh":"Chinese mod gameplay","shotIntl":"International gameplay","shotMobile":"Mobile gameplay","shotMobileIntl":"Mobile intl gameplay","shotNas":"NAS hub preview","footer":"OPERAÇÃO SALTLINE","footerRepo":"GitHub · superproxy/saltline"}};
+
+    function resolveLang() {
+      try {
+        var saved = localStorage.getItem("sl-lang");
+        if (saved && INDEX_PACK[saved]) return saved;
+      } catch (e) {}
+      var n = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+      var map = { zh: "zh", en: "en", fr: "fr", ja: "ja", ar: "ar", th: "th", ru: "ru", ko: "ko", es: "es", de: "de", pt: "pt", mn: "mn", bo: "bo" };
+      for (var p in map) if (n === p || n.indexOf(p + "-") === 0) return map[p];
+      return "en";
+    }
+
+    function pack(lang) {
+      return INDEX_PACK[lang] || INDEX_PACK.en || INDEX_PACK.zh;
+    }
+
+    function setMeta(name, content, isProperty) {
+      if (!content) return;
+      var sel = isProperty ? 'meta[property="' + name + '"]' : 'meta[name="' + name + '"]';
+      var el = document.querySelector(sel);
+      if (el) el.setAttribute("content", content);
+    }
+
+    function applyIndexLang(lang) {
+      var p = pack(lang);
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        var k = el.getAttribute("data-i18n");
+        if (p[k] != null) el.textContent = p[k];
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+        var k = el.getAttribute("data-i18n-html");
+        if (p[k] != null) el.innerHTML = p[k];
+      });
+      document.querySelectorAll("[data-i18n-title]").forEach(function (el) {
+        var k = el.getAttribute("data-i18n-title");
+        if (p[k] != null) el.setAttribute("title", p[k]);
+      });
+      document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+        var k = el.getAttribute("data-i18n-alt");
+        if (p[k] != null) el.setAttribute("alt", p[k]);
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+        var k = el.getAttribute("data-i18n-aria");
+        if (p[k] != null) el.setAttribute("aria-label", p[k]);
+      });
+      var sel = document.getElementById("index-lang");
+      if (sel) sel.value = lang;
+      document.title = p.pageTitle;
+      setMeta("description", p.metaDesc, false);
+      setMeta("og:title", p.pageTitle, true);
+      setMeta("og:description", p.metaDesc, true);
+      setMeta("twitter:title", p.pageTitle, false);
+      setMeta("twitter:description", p.metaDesc, false);
+      setMeta("og:locale", lang === "zh" ? "zh_CN" : lang.replace("-", "_"), true);
+    }
+
+    function bindLangSelect() {
+      var sel = document.getElementById("index-lang");
+      if (!sel) return;
+      INDEX_LANGS.forEach(function (code) {
+        var opt = document.createElement("option");
+        opt.value = code;
+        opt.textContent = INDEX_NAMES[code] || code;
+        sel.appendChild(opt);
+      });
+      sel.addEventListener("change", function () {
+        var l = sel.value;
+        try { localStorage.setItem("sl-lang", l); } catch (e) {}
+        applyIndexLang(l);
+      });
+    }
+
+    window.applyIndexLang = applyIndexLang;
+    var lang = resolveLang();
+    bindLangSelect();
+    applyIndexLang(lang);
+  })();
+  </script>
+  
+  <!-- fnos-card-nav -->
+  <script>
+    (function () {
+      document.querySelectorAll(".card[data-play]").forEach(function (card) {
+        card.addEventListener("click", function (e) {
+          if (e.target.closest("a, button, select, input, label")) return;
+          var link = card.querySelector(".actions .btn");
+          if (link && link.href) window.location.href = link.getAttribute("href");
+        });
+        card.addEventListener("keydown", function (e) {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          e.preventDefault();
+          var link = card.querySelector(".actions .btn");
+          if (link) window.location.href = link.getAttribute("href");
+        });
+        card.setAttribute("tabindex", "0");
+        card.setAttribute("role", "link");
+      });
+    })();
+  </script>
+
+  <!-- /index-i18n -->
+</body>
+</html>
