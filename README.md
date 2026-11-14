@@ -33,7 +33,8 @@
 
 ```
 release/
-├── index.html                     # 三端合集首页
+├── index.html                     # 三端合集首页（GitHub / 本地）
+├── index-fn-os.html               # 飞牛专用首页（由 build_fnos_www 从 index 生成）
 ├── gameplay-original.jpg          # 上图配图资源
 ├── gameplay-63.jpg
 ├── gameplay-18.jpg
@@ -66,6 +67,12 @@ cd release && python3 -m http.server 8765
 
 ## 维护者：`tools/`
 
-构建脚本在 `tools/`（含 `paths.py` 文件名约定、`build_intl_edition.py`、`build_fnos_www.py`、`tools/fnos/pack_fpk.py`）。打包后会更新 `release/downloads/Saltline.fpk`。
+游戏 HTML **只维护在 `release/`**。飞牛打包时 `tools/fnos_stage.py` 从 `release/` 原样拷贝进 FPK（`index.html` = `index-fn-os.html`）。`tools/fnos/.../app/www` 不纳入 Git。
+
+```bash
+python3 tools/build_intl_edition.py
+python3 tools/build_fnos_www.py
+python3 tools/fnos/pack_fpk.py   # 更新 release/downloads/Saltline.fpk
+```
 
 原作：Felix Rieseberg。本合集为衍生改编，授权状态待核实。

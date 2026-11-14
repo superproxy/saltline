@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
-"""Sync FnOS app/www: index.html hub + 原版 / 中文版 / 国际版."""
+"""生成飞牛 NAS 首页 release/index-fn-os.html，并把 release/ 镜像到 app/www。"""
 
 from __future__ import annotations
 
 import hashlib
 import re
-import shutil
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from paths import FNOS_DESKTOP_GAMES, FNOS_WWW, INTL_HTML, ORIGINAL_HTML, RELEASE, ZH_MOD_HTML  # noqa: E402
+from fnos_stage import sha256_file, stage_fnos_www_from_release  # noqa: E402
+from paths import (  # noqa: E402
+    FNOS_DESKTOP_GAMES,
+    INDEX_FNOS,
+    ORIGINAL_HTML,
+    RELEASE,
+    ZH_MOD_HTML,
+    INTL_HTML,
+)
 
 INDEX = RELEASE / "index.html"
 GAMES = FNOS_DESKTOP_GAMES
-
-HUB_IMAGES = (
-    "gameplay-original.jpg",
-    "gameplay-63.jpg",
-    "gameplay-18.jpg",
-    "gameplay-40.jpg",
-)
 
 FNOS_STYLE = """
     body.fnos-hub #platform-desktop,
@@ -96,14 +96,6 @@ FNOS_CARD_CLICK = """
 """
 
 
-def sha256_file(path: Path) -> str:
-    h = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
 def patch_index_for_fnos(html: str) -> str:
     if "<body>" in html:
         html = html.replace("<body>", '<body class="fnos-hub">', 1)
@@ -164,33 +156,12 @@ def main() -> int:
             print(f"missing game file: {path}", file=sys.stderr)
             return 1
 
-    FNOS_WWW.mkdir(parents=True, exist_ok=True)
-    for item in FNOS_WWW.iterdir():
-        if item.is_file():
-            item.unlink()
-
     index_html = patch_index_for_fnos(INDEX.read_text(encoding="utf-8"))
-    (FNOS_WWW / "index.html").write_text(index_html, encoding="utf-8")
+    INDEX_FNOS.write_text(index_html, encoding="utf-8")
+    print("Wrote", INDEX_FNOS)
 
-    manifest: list[str] = []
-    for name in GAMES:
-        src = RELEASE / name
-        dest = FNOS_WWW / name
-        shutil.copy2(src, dest)
-        manifest.append(f"{name}  {sha256_file(dest)}  {dest.stat().st_size}")
-
-    for img in HUB_IMAGES:
-        src = RELEASE / img
-        if src.is_file():
-            dest = FNOS_WWW / img
-            shutil.copy2(src, dest)
-            manifest.append(f"{img}  {sha256_file(dest)}  {dest.stat().st_size}")
-
-    manifest.append(
-        f"index.html  {sha256_file(FNOS_WWW / 'index.html')}  "
-        f"{(FNOS_WWW / 'index.html').stat().st_size}"
-    )
-    print("FnOS www synced:", FNOS_WWW)
+    manifest = stage_fnos_www_from_release()
+    print("FnOS www staged from release/ (byte-identical game files)")
     for line in manifest:
         print(" ", line)
     return 0

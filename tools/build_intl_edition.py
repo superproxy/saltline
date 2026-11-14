@@ -94,6 +94,8 @@ function slBuildMenu(dM,QM){var p=slPack(),m=p.menu,q=function(u){return (QM[u]|
           <div class="seg" role="group" aria-labelledby="l-q">${opts}</div></div>
         <div class="row"><label for="s-sens">${m.sens}</label><div class="slider"><input id="s-sens" type="range" min="0.2" max="3" step="0.05"><output data-o="sens"></output></div></div>
         <div class="row"><label id="l-inv">${m.invertY}</label><button class="toggle" data-act="invert" aria-labelledby="l-inv" aria-pressed="false"><i></i><span>${slPack().toggleOff}</span></button></div>
+        <div class="row"><label id="l-iammo">${m.assistAmmo}</label><button class="toggle" data-act="inf-ammo" aria-labelledby="l-iammo" aria-pressed="false"><i></i><span>${slPack().toggleOff}</span></button></div>
+        <div class="row"><label id="l-ihp">${m.assistHp}</label><button class="toggle" data-act="inf-hp" aria-labelledby="l-ihp" aria-pressed="false"><i></i><span>${slPack().toggleOff}</span></button></div>
         <div class="row"><label for="s-vol">${m.volume}</label><div class="slider"><input id="s-vol" type="range" min="0" max="100" step="1"><output data-o="vol"></output></div></div>
         <div class="row"><label for="s-fov">${m.fov}</label><div class="slider"><input id="s-fov" type="range" min="60" max="95" step="1"><output data-o="fov"></output></div></div>
         <div class="row" data-row="fs"><label id="l-fs">${m.display}</label><button class="btn small" data-act="fullscreen" aria-labelledby="l-fs fs-t"><span id="fs-t">${slPack().fsEnter}</span></button></div>

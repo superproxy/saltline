@@ -32,12 +32,15 @@ TZ_NAME = "Asia/Shanghai"
 BUILD_INTL = REPO / "tools" / "build_intl_edition.py"
 BUILD_WWW = REPO / "tools" / "build_fnos_www.py"
 sys.path.insert(0, str(REPO / "tools"))
+from fnos_stage import stage_fnos_www_from_release  # noqa: E402
 from paths import (  # noqa: E402
+    FNOS_DESKTOP_GAMES,
     FNOS_MAINTAINER,
     FPK_NAME,
     FPK_PORT_NAME,
-    FNOS_DESKTOP_GAMES,
+    INDEX_FNOS,
     INTL_HTML,
+    RELEASE,
     REPO_URL,
 )
 
@@ -306,9 +309,12 @@ def sync_sources() -> None:
         if not script.is_file():
             raise SystemExit(f"missing {script}")
         subprocess.run([sys.executable, str(script)], check=True, cwd=str(REPO))
+    if not INDEX_FNOS.is_file():
+        raise SystemExit(f"missing {INDEX_FNOS}")
     for name in FNOS_DESKTOP_GAMES:
-        if not (WWW / name).is_file():
-            raise SystemExit(f"missing www/{name}")
+        if not (RELEASE / name).is_file():
+            raise SystemExit(f"missing release/{name}")
+    stage_fnos_www_from_release()
 
 
 def update_project(port: str) -> None:

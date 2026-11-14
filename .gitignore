@@ -6,6 +6,8 @@ Desktop.ini
 dist/
 tools/fnos/dist/
 tools/fnos/project/Saltline/Saltline.fpk
+tools/fnos/project/Saltline/app/www/*
+!tools/fnos/project/Saltline/app/www/.gitkeep
 _staging-*/
 .playwright-mcp/
 backups/
