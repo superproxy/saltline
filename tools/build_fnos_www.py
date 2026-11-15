@@ -155,19 +155,70 @@ def patch_index_for_fnos(html: str) -> str:
         html = html.replace(marker, FNOS_CARD_CLICK + "\n  " + marker, 1)
 
     pack_hook = "var INDEX_PACK ="
-    fnos_pack_patch = (
+    fnos_pack_var = (
         'var INDEX_FNOS = {"zh":{"pageTitle":"盐线行动｜NAS","siteTitle":"盐线行动","footer":"盐线行动",'
         '"fnosHeroLede":"点击卡片进入桌面版或手机版（共五款）。","fnosNasLede":"本机已安装，直接选择版本进入。"},'
         '"en":{"pageTitle":"Saltline Ops | NAS","siteTitle":"Saltline Ops","footer":"Saltline Ops",'
         '"fnosHeroLede":"Tap a card: desktop or mobile builds (five total).",'
-        '"fnosNasLede":"Pick a build below."}};\n'
-        "    (function(){for(var l in INDEX_FNOS){if(!INDEX_PACK[l])INDEX_PACK[l]={};"
-        "Object.assign(INDEX_PACK[l],INDEX_FNOS[l]);}})();\n    "
+        '"fnosNasLede":"Pick a build below."}};\n    '
+    )
+    fnos_pack_merge = (
+        "(function(){var fe=INDEX_FNOS.en;"
+        "for(var l in INDEX_PACK){"
+        "if(INDEX_FNOS[l])Object.assign(INDEX_PACK[l],INDEX_FNOS[l]);"
+        "else if(fe)Object.assign(INDEX_PACK[l],"
+        "{fnosHeroLede:fe.fnosHeroLede,fnosNasLede:fe.fnosNasLede});"
+        "}})();\n"
     )
     if "INDEX_FNOS" not in html and pack_hook in html:
-        html = html.replace(pack_hook, fnos_pack_patch + pack_hook, 1)
+        html = html.replace(pack_hook, fnos_pack_var + pack_hook, 1)
+        html = re.sub(
+            r"(var INDEX_PACK = .+;\n)(\n    function resolveLang)",
+            r"\1    " + fnos_pack_merge + r"\2",
+            html,
+            count=1,
+        )
+    elif "INDEX_FNOS" in html and "Object.assign(INDEX_PACK[l],INDEX_FNOS[l])" in html:
+        # 修复旧版：合并写在 INDEX_PACK 声明之前会导致 ReferenceError
+        html = re.sub(
+            r"var INDEX_FNOS = \{.*?\};\n"
+            r"    \(function\(\)\{for\(var l in INDEX_FNOS\).*?INDEX_FNOS\[l\]\);\}\}\)\(\);\n",
+            "",
+            html,
+            count=1,
+            flags=re.DOTALL,
+        )
+        if "Object.assign(INDEX_PACK[l],INDEX_FNOS[l])" not in html:
+            if "var INDEX_FNOS" not in html:
+                html = html.replace(pack_hook, fnos_pack_var + pack_hook, 1)
+            html = re.sub(
+                r"(var INDEX_PACK = .+;\n)(\n    function resolveLang)",
+                r"\1    " + fnos_pack_merge + r"\2",
+                html,
+                count=1,
+            )
 
+    if "fnos-hub" in html:
+        assert_fnos_i18n_script(html)
     return html
+
+
+def assert_fnos_i18n_script(html: str) -> None:
+    pack = html.find("var INDEX_PACK =")
+    merge = html.find("Object.assign(INDEX_PACK")
+    resolve = html.find("function resolveLang")
+    if pack < 0 or merge < 0 or resolve < 0:
+        raise SystemExit("fnos i18n: INDEX_PACK / merge / resolveLang missing")
+    if merge < pack:
+        raise SystemExit("fnos i18n: INDEX_FNOS merge must follow INDEX_PACK")
+    if resolve < merge:
+        raise SystemExit("fnos i18n: resolveLang must follow INDEX_FNOS merge")
+    bad = re.search(
+        r"var INDEX_FNOS[\s\S]*?INDEX_PACK\[l\][\s\S]*?\n\s*var INDEX_PACK =",
+        html,
+    )
+    if bad:
+        raise SystemExit("fnos i18n: merge must not run before INDEX_PACK declaration")
 
 
 def main() -> int:

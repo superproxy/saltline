@@ -26,7 +26,7 @@ APP = PROJECT / "app"
 WWW = APP / "www"
 DIST = ROOT / "dist"
 DOWNLOADS = REPO / "release" / "downloads"
-VERSION = "1.0.4"
+VERSION = "1.0.5"
 TZ_NAME = "Asia/Shanghai"
 
 BUILD_INTL = REPO / "tools" / "build_intl_edition.py"

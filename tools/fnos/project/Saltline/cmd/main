@@ -3,7 +3,7 @@ set -u
 
 APPDEST="${TRIM_APPDEST:-/var/apps/Saltline}"
 PKGVAR="${TRIM_PKGVAR:-${APPDEST}/var}"
-PORT="${TRIM_SERVICE_PORT:-58458}"
+PORT="${TRIM_SERVICE_PORT:-59940}"
 PID_FILE="${PKGVAR}/http.pid"
 LOG_FILE="${PKGVAR}/http.log"
 BIND="0.0.0.0"
