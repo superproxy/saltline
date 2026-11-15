@@ -12,6 +12,7 @@ INTL_HTML = "Saltline-International.html"
 MOBILE_ZH_HTML = "盐线行动SALTLINE-手机魔改版.html"
 MOBILE_INTL_HTML = "盐线行动SALTLINE-手机国际版.html"
 FNOS_DESKTOP_GAMES = (ORIGINAL_HTML, ZH_MOD_HTML, INTL_HTML)
+FNOS_GAMES = FNOS_DESKTOP_GAMES + (MOBILE_ZH_HTML, MOBILE_INTL_HTML)
 INDEX_FNOS = RELEASE / "index-fn-os.html"
 FNOS_HUB_IMAGES = (
     "gameplay-original.jpg",

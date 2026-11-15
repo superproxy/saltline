@@ -11,16 +11,18 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fnos_stage import sha256_file, stage_fnos_www_from_release  # noqa: E402
 from paths import (  # noqa: E402
-    FNOS_DESKTOP_GAMES,
+    FNOS_GAMES,
     INDEX_FNOS,
+    INTL_HTML,
+    MOBILE_INTL_HTML,
+    MOBILE_ZH_HTML,
     ORIGINAL_HTML,
     RELEASE,
     ZH_MOD_HTML,
-    INTL_HTML,
 )
 
 INDEX = RELEASE / "index.html"
-GAMES = FNOS_DESKTOP_GAMES
+GAMES = FNOS_GAMES
 
 FNOS_STYLE = """
     body.fnos-hub #platform-desktop,
@@ -68,6 +70,28 @@ CARD_BLOCK = f"""            <article class="card has-thumb" data-play="{ORIGINA
                 <h3 data-i18n="cardIntlTitle">国际版</h3>
                 <p data-i18n="cardIntlDesc">13 种界面语言；设置内可切换。</p>
                 <div class="actions"><a class="btn ghost" href="{INTL_HTML}" data-i18n="btnIntl">进入</a></div>
+              </div>
+            </article>
+            <article class="card has-thumb" data-play="{MOBILE_ZH_HTML}">
+              <a class="card-thumb" href="{MOBILE_ZH_HTML}" tabindex="-1" aria-hidden="true">
+                <img src="gameplay-40.jpg" width="1948" height="1080" data-i18n-alt="shotMobile" alt="手机版" loading="lazy" decoding="async">
+              </a>
+              <div class="card-body">
+                <span class="tag" data-i18n="tagMobile">手机</span>
+                <h3 data-i18n="cardMobileTitle">手机魔改版</h3>
+                <p data-i18n="cardMobileDesc">中文界面，全屏与画质优化，专为触屏布局。</p>
+                <div class="actions"><a class="btn" href="{MOBILE_ZH_HTML}" data-i18n="btnMobile">进入</a></div>
+              </div>
+            </article>
+            <article class="card has-thumb" data-play="{MOBILE_INTL_HTML}">
+              <a class="card-thumb" href="{MOBILE_INTL_HTML}" tabindex="-1" aria-hidden="true">
+                <img src="gameplay-63.jpg" width="1948" height="1080" data-i18n-alt="shotMobileIntl" alt="手机国际版" loading="lazy" decoding="async">
+              </a>
+              <div class="card-body">
+                <span class="tag" data-i18n="tagMobileIntl">手机国际</span>
+                <h3 data-i18n="cardMobileIntlTitle">手机国际版</h3>
+                <p data-i18n="cardMobileIntlDesc">英文 SALTLINE 界面，沿用触控与横屏优化。</p>
+                <div class="actions"><a class="btn ghost" href="{MOBILE_INTL_HTML}" data-i18n="btnMobileIntl">进入</a></div>
               </div>
             </article>
 """
@@ -133,9 +157,9 @@ def patch_index_for_fnos(html: str) -> str:
     pack_hook = "var INDEX_PACK ="
     fnos_pack_patch = (
         'var INDEX_FNOS = {"zh":{"pageTitle":"盐线行动｜NAS","siteTitle":"盐线行动","footer":"盐线行动",'
-        '"fnosHeroLede":"点击卡片进入原版 / 中文版 / 国际版。","fnosNasLede":"本机已安装，直接选择版本进入。"},'
+        '"fnosHeroLede":"点击卡片进入桌面版或手机版（共五款）。","fnosNasLede":"本机已安装，直接选择版本进入。"},'
         '"en":{"pageTitle":"Saltline Ops | NAS","siteTitle":"Saltline Ops","footer":"Saltline Ops",'
-        '"fnosHeroLede":"Tap a card: original, Chinese, or international.",'
+        '"fnosHeroLede":"Tap a card: desktop or mobile builds (five total).",'
         '"fnosNasLede":"Pick a build below."}};\n'
         "    (function(){for(var l in INDEX_FNOS){if(!INDEX_PACK[l])INDEX_PACK[l]={};"
         "Object.assign(INDEX_PACK[l],INDEX_FNOS[l]);}})();\n    "

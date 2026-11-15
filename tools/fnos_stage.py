@@ -8,7 +8,7 @@ import shutil
 from pathlib import Path
 
 from paths import (
-    FNOS_DESKTOP_GAMES,
+    FNOS_GAMES,
     FNOS_HUB_IMAGES,
     FNOS_WWW,
     INDEX_FNOS,
@@ -28,7 +28,7 @@ def stage_fnos_www_from_release(*, verify: bool = True) -> list[str]:
     """写入 FNOS_WWW：index.html 来自 release/index-fn-os.html，其余与 release/ 同文件。"""
     if not INDEX_FNOS.is_file():
         raise SystemExit(f"missing {INDEX_FNOS}; run tools/build_fnos_www.py first")
-    for name in FNOS_DESKTOP_GAMES:
+    for name in FNOS_GAMES:
         src = RELEASE / name
         if not src.is_file():
             raise SystemExit(f"missing release/{name}")
@@ -49,7 +49,7 @@ def stage_fnos_www_from_release(*, verify: bool = True) -> list[str]:
             raise SystemExit(f"stage mismatch after copy: {name}")
         lines.append(f"{name}  {sha256_file(dest)}  {dest.stat().st_size}")
 
-    for name in FNOS_DESKTOP_GAMES:
+    for name in FNOS_GAMES:
         _copy(name)
     for img in FNOS_HUB_IMAGES:
         if (RELEASE / img).is_file():

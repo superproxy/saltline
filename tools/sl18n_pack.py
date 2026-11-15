@@ -92,7 +92,7 @@ def pack_zh():
             "retry": "重试", "debriefK": "4号泊位 · 任务简报", "debriefH": "盐线已沉寂",
             "ratingL": "评级", "timeL": "用时", "accL": "命中率", "killsL": "击毁机械", "retriesL": "重试次数",
             "redeploy": "再次出发", "panelSettings": "设置", "panelControls": "操作说明", "close": "关闭",
-            "quality": "画质", "sens": "鼠标灵敏度", "invertY": "反转Y轴",
+            "quality": "画质", "showFps": "显示帧率", "sens": "鼠标灵敏度", "invertY": "反转Y轴",
             "assistAmmo": "无限弹药", "assistHp": "无限生命",
             "volume": "主音量", "fov": "视野",
             "display": "显示", "lang": "界面语言",
@@ -142,6 +142,7 @@ def pack_zh():
         "qnoteAuto": "已按本机自动选择画质（{q}）。如果画面卡顿，请调低。",
         "qnoteManual": "画质会立即生效，阴影和反射可能要过一会儿才能更新完。",
         "toggleOn": "开", "toggleOff": "关",
+        "fpsSuffix": "帧",
         "fsEnter": "进入全屏", "fsExit": "退出全屏",
         "lookResume": "继续后会重新锁定鼠标。",
     }
@@ -190,7 +191,7 @@ def pack_en():
             "retry": "Retry", "debriefK": "Berth 4 · Debrief", "debriefH": "Saltline is dark",
             "ratingL": "Rating", "timeL": "Time", "accL": "Accuracy", "killsL": "Kills", "retriesL": "Retries",
             "redeploy": "Redeploy", "panelSettings": "Settings", "panelControls": "Controls", "close": "Close",
-            "quality": "Quality", "sens": "Mouse sensitivity", "invertY": "Invert Y",
+            "quality": "Quality", "showFps": "Show FPS", "sens": "Mouse sensitivity", "invertY": "Invert Y",
             "assistAmmo": "Infinite ammo", "assistHp": "Infinite health",
             "volume": "Master volume",
             "fov": "Field of view", "display": "Display", "lang": "Language",
@@ -230,6 +231,7 @@ def pack_en():
         "qnoteAuto": "Quality auto-selected for this device ({q}). Lower it if performance drops.",
         "qnoteManual": "Quality applies immediately; shadows and reflections may take a moment to refresh.",
         "toggleOn": "On", "toggleOff": "Off",
+        "fpsSuffix": "fps",
         "fsEnter": "Enter fullscreen", "fsExit": "Exit fullscreen",
         "lookResume": "Mouse will re-lock after resume.",
     })

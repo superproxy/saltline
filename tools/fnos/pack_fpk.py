@@ -34,7 +34,7 @@ BUILD_WWW = REPO / "tools" / "build_fnos_www.py"
 sys.path.insert(0, str(REPO / "tools"))
 from fnos_stage import stage_fnos_www_from_release  # noqa: E402
 from paths import (  # noqa: E402
-    FNOS_DESKTOP_GAMES,
+    FNOS_GAMES,
     FNOS_MAINTAINER,
     FPK_NAME,
     FPK_PORT_NAME,
@@ -311,7 +311,7 @@ def sync_sources() -> None:
         subprocess.run([sys.executable, str(script)], check=True, cwd=str(REPO))
     if not INDEX_FNOS.is_file():
         raise SystemExit(f"missing {INDEX_FNOS}")
-    for name in FNOS_DESKTOP_GAMES:
+    for name in FNOS_GAMES:
         if not (RELEASE / name).is_file():
             raise SystemExit(f"missing release/{name}")
     stage_fnos_www_from_release()

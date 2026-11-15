@@ -92,6 +92,7 @@ function slBuildMenu(dM,QM){var p=slPack(),m=p.menu,q=function(u){return (QM[u]|
           <select id="sl-lang" class="sl-lang" aria-labelledby="l-lang">${langs}</select></div>
         <div class="row"><label id="l-q">${m.quality}</label>
           <div class="seg" role="group" aria-labelledby="l-q">${opts}</div></div>
+        <div class="row"><label id="l-fps">${m.showFps}</label><button class="toggle" data-act="show-fps" aria-labelledby="l-fps" aria-pressed="false"><i></i><span>${slPack().toggleOff}</span></button></div>
         <div class="row"><label for="s-sens">${m.sens}</label><div class="slider"><input id="s-sens" type="range" min="0.2" max="3" step="0.05"><output data-o="sens"></output></div></div>
         <div class="row"><label id="l-inv">${m.invertY}</label><button class="toggle" data-act="invert" aria-labelledby="l-inv" aria-pressed="false"><i></i><span>${slPack().toggleOff}</span></button></div>
         <div class="row"><label id="l-iammo">${m.assistAmmo}</label><button class="toggle" data-act="inf-ammo" aria-labelledby="l-iammo" aria-pressed="false"><i></i><span>${slPack().toggleOff}</span></button></div>
@@ -252,6 +253,16 @@ function slApplyMenuStatic(s){let p=slPack(),lc=s.querySelector(".loc-card b"),l
     text = text.replace(
         'T.querySelector("span").textContent=n.invertY?"开":"关"',
         'T.querySelector("span").textContent=n.invertY?slPack().toggleOn:slPack().toggleOff',
+        1,
+    )
+    text = text.replace(
+        'Fe.querySelector("span").textContent=n.showFps?"开":"关"',
+        'Fe.querySelector("span").textContent=n.showFps?slPack().toggleOn:slPack().toggleOff',
+        1,
+    )
+    text = text.replace(
+        'Fp.textContent=Math.round(a?1/a:0)+" 帧"',
+        'Fp.textContent=Math.round(a?1/a:0)+" "+slPack().fpsSuffix',
         1,
     )
     text = text.replace(

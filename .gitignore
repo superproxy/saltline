@@ -13,3 +13,4 @@ _staging-*/
 backups/
 __pycache__/
 *.pyc
+drafts/
