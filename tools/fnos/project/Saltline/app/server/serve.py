@@ -10,7 +10,7 @@ class ReusableTCPServer(socketserver.TCPServer):
 
 
 def main() -> None:
-    port = int(os.environ.get("SALTLINE_PORT", "53144"))
+    port = int(os.environ.get("SALTLINE_PORT", "58458"))
     bind = os.environ.get("SALTLINE_BIND", "0.0.0.0")
     root = os.environ.get("SALTLINE_WWW")
     if not root or not os.path.isfile(os.path.join(root, "index.html")):

@@ -26,7 +26,7 @@ APP = PROJECT / "app"
 WWW = APP / "www"
 DIST = ROOT / "dist"
 DOWNLOADS = REPO / "release" / "downloads"
-VERSION = "1.0.3"
+VERSION = "1.0.4"
 TZ_NAME = "Asia/Shanghai"
 
 BUILD_INTL = REPO / "tools" / "build_intl_edition.py"
@@ -39,7 +39,6 @@ from paths import (  # noqa: E402
     FPK_NAME,
     FPK_PORT_NAME,
     INDEX_FNOS,
-    INTL_HTML,
     RELEASE,
     REPO_URL,
 )
@@ -80,7 +79,7 @@ def manifest_text(port: str) -> str:
     return f"""appname                    = Saltline
 version                    = {VERSION}
 display_name               = 盐线行动
-desc                       = 盐线行动：浏览器打开 index.html，卡片进入原版 / 中文版 / 国际版。端口 {port} 静态服务，请用系统浏览器访问。
+desc                       = 盐线行动：浏览器打开 index.html，卡片进入桌面三版与手机双版（共五款）。端口 {port} 静态服务，请用系统浏览器访问。
 platform                   = all
 source                     = thirdparty
 maintainer                 = {FNOS_MAINTAINER}
@@ -93,7 +92,7 @@ checkport                  = true
 ctl_stop                   = true
 os_min_version             = 1.2.0
 disable_authorization_path = true
-changelog                  = 合集入口（原版 / 中文版 / 国际版）；端口 {port} 静态服务，系统浏览器访问。
+changelog                  = 合集入口（桌面三版 + 手机双版）；端口 {port} 静态服务，系统浏览器访问。
 checksum                   = 
 """
 
@@ -432,8 +431,9 @@ def verify_fpk(fpk: Path, port: str, html_sha: str) -> None:
         ui = (app_dir / "ui" / "config").read_text("utf-8")
         if f'"port": "{port}"' not in ui:
             raise SystemExit("ui config port mismatch")
-        if not (app_dir / "www" / INTL_HTML).is_file():
-            raise SystemExit("intl html missing in package")
+        for name in FNOS_GAMES:
+            if not (app_dir / "www" / name).is_file():
+                raise SystemExit(f"game html missing in package: {name}")
     finally:
         shutil.rmtree(work, ignore_errors=True)
 
