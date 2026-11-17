@@ -53,7 +53,9 @@ release/
 | 场景 | 怎么做 |
 | --- | --- |
 | 本地试玩 | 见下方「本地预览」，打开首页点卡片 |
+| 网页直玩 | [GitHub Pages](https://superproxy.github.io/saltline/)（`/release`） |
 | 飞牛 fnOS | 安装 `release/downloads/Saltline.fpk`；应用中心维护者 **superproxy**，项目页 [github.com/superproxy/saltline](https://github.com/superproxy/saltline) |
+| FN软仓社区源 | 见下方「FN软仓社区源」；Release 下载 [releases](https://github.com/superproxy/saltline/releases) |
 
 ## 本地预览
 
@@ -75,4 +77,12 @@ python3 tools/build_fnos_www.py
 python3 tools/fnos/pack_fpk.py   # 更新 release/downloads/Saltline.fpk
 ```
 
-原作：Felix Rieseberg。本合集为衍生改编，授权状态待核实。
+## FN软仓社区源（第三方商店）
+
+将社区源 `fnrc.json` 直链（Gitee raw，国内可访问）添加到飞牛「应用中心 → 社区源」即可安装/更新；也可手动下载 FPK：https://github.com/superproxy/saltline/releases
+
+源清单模板见仓库根目录 [`fnrc.json`](fnrc.json)。推送到自建 Gitee 仓库 `saltline-fnos-source` 后，把 raw 直链填入 FN软仓聚合申请。
+
+## 授权与用途
+
+原作：Felix Rieseberg。本合集为非官方衍生改编，**授权状态待核实**；仅供个人学习与娱乐，勿用于商业分发。社区源与应用中心传播会放大授权风险，上架/聚合前请自行确认用途边界。
