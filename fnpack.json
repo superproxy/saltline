@@ -1,0 +1,38 @@
+{
+  "schema_version": "2",
+  "source_info": {
+    "name": "superproxy-saltline",
+    "author": "superproxy",
+    "homepage": "https://github.com/superproxy/saltline",
+    "description": "盐线行动 SALTLINE：飞牛 fnOS 本地静态合集（桌面三版 + 手机双版）。包在 GitHub Release，清单随本仓库同步。"
+  },
+  "apps": {
+    "Saltline": {
+      "display_name": "盐线行动",
+      "desc": "网页版盐线行动合集（原版/中文魔改/国际版/手机版），飞牛 fnOS 本地静态服务运行，无后端。非官方衍生，仅供个人娱乐。",
+      "platform": ["all"],
+      "categories": ["娱乐"],
+      "icon_url": "https://raw.githubusercontent.com/superproxy/saltline/main/tools/fnos/project/Saltline/ICON_256.PNG",
+      "maintainer": "superproxy",
+      "maintainer_url": "https://github.com/superproxy/saltline",
+      "distributor": "superproxy",
+      "run_as": "package",
+      "install_type": "",
+      "is_docker": false,
+      "service_port": "34493",
+      "releases": {
+        "1.0.5": {
+          "changelog": "合集入口（桌面三版 + 手机双版）；端口 34493 静态服务，系统浏览器访问。",
+          "updated_at": "2026-11-15T13:40:00+08:00",
+          "packages": {
+            "all": {
+              "download_url": "https://github.com/superproxy/saltline/releases/download/v1.0.5/Saltline.fpk",
+              "sha256": "b5ff2b028b2cdb2d8976ae821b26bd12cc5f3e2e6ec76007b63da23755bb036a",
+              "size": 3030666
+            }
+          }
+        }
+      }
+    }
+  }
+}

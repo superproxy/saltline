@@ -1,5 +1,8 @@
 {
   "source_name": "superproxy-saltline",
+  "sync": "github",
+  "repository": "https://github.com/superproxy/saltline",
+  "fnpack": "https://raw.githubusercontent.com/superproxy/saltline/main/fnpack.json",
   "apps": [
     {
       "id": "saltline",
