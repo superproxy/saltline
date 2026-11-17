@@ -79,13 +79,12 @@ python3 tools/fnos/pack_fpk.py   # 更新 release/downloads/Saltline.fpk
 
 ## FN软仓 / FnDepot 社区源（GitHub 同步）
 
-不另建 Gitee。清单在本仓库根目录，商店按 GitHub 源同步：
+不另建 Gitee。专用同步仓（仓库名 `FnDepot`，便于社区自动扫源）：
 
-- 仓库源（推荐）：`https://github.com/superproxy/saltline`
-- 清单直链：https://raw.githubusercontent.com/superproxy/saltline/main/fnpack.json
-- 兼容旧字段：[`fnrc.json`](fnrc.json)（含 `sync: github`）
+- **推荐添加**：`https://github.com/superproxy/FnDepot`
+- 清单直链：https://raw.githubusercontent.com/superproxy/FnDepot/main/fnpack.json
 
-在 FnDepot / FN软仓极客模式「添加源」填上述地址；国内可配 GitHub 加速后再同步。FPK 走 Release：https://github.com/superproxy/saltline/releases
+本仓根目录也有 [`fnpack.json`](fnpack.json) / [`fnrc.json`](fnrc.json)，可直接当源；发版后记得两边清单一起改。国内可在商店配置 GitHub 加速后再同步。FPK：https://github.com/superproxy/saltline/releases
 
 ## 授权与用途
 

@@ -20,11 +20,12 @@
   Actions 部署 release/ → https://superproxy.github.io/saltline/
 
 【渠道 2】FN软仓 / FnDepot 社区源（GitHub 同步，主推）
-  ① 本仓库根目录维护 fnpack.json（勿改文件名）
-  ② GitHub Release 托管 Saltline.fpk
-  ③ 用户/聚合方添加源：https://github.com/superproxy/saltline
-     或直链：https://raw.githubusercontent.com/superproxy/saltline/main/fnpack.json
+  ① 专用同步仓：https://github.com/superproxy/FnDepot（仓库名 FnDepot，便于自动扫源）
+  ② 上游 saltline 根目录也有 fnpack.json；Release 托管 Saltline.fpk
+  ③ 用户添加源：https://github.com/superproxy/FnDepot
+     或直链：https://raw.githubusercontent.com/superproxy/FnDepot/main/fnpack.json
   ④ 国内：商店里开 GitHub 加速后再「同步源」
+  ⑤ 发帖草稿：drafts/promotion/论坛-社区源与上架发帖.txt
 
 【渠道 3】飞牛官方应用中心（并行）
   飞书：https://trim-nas.feishu.cn/share/base/form/shrcn5m4MsyeqvEh6c4tm97pQKb
@@ -36,28 +37,24 @@
 三、GitHub 同步接入（详细）
 ---------------------------------
 
-【步骤 1】清单（已在仓库）
-  - fnpack.json：schema_version 2，apps.Saltline → Release 直链 + sha256 + size
-  - fnrc.json：旧式字段 + sync=github，指向同一仓库
+【步骤 1】清单
+  - https://github.com/superproxy/FnDepot/fnpack.json（对外同步主入口）
+  - saltline 根目录 fnpack.json / fnrc.json（同源备份）
 
 【步骤 2】用户侧添加源
   FnDepot / FN软仓 → 极客模式 → 添加源：
-    https://github.com/superproxy/saltline
+    https://github.com/superproxy/FnDepot
   点同步；若 GitHub 慢，先加加速（如 https://gh-proxy.org）再同步。
 
-【步骤 3】聚合申请（可选）
-  论坛搜「FN软仓」「社区源申请」时填：
-  - 源名称：superproxy-saltline
-  - 同步方式：GitHub
-  - 仓库：https://github.com/superproxy/saltline
-  - 清单：fnpack.json（仓库根目录）
-  不要再填 Gitee raw。
+【步骤 3】聚合 / 论坛（可选，需登录发帖）
+  粘贴 drafts/promotion/论坛-社区源与上架发帖.txt
+  聚合字段：同步方式=GitHub，仓库=https://github.com/superproxy/FnDepot
 
 【步骤 4】发版后更新清单
   ① 打新 tag / Release，上传新 fpk
-  ② 改 fnpack.json 的 version、download_url、sha256、size、changelog
-  ③ 同步改 fnrc.json 的 version / download_url
-  ④ push main → 客户端下次同步即见新版本
+  ② 改 saltline 与 FnDepot 两边 fnpack.json（version、url、sha256、size）
+  ③ 同步改 saltline/fnrc.json
+  ④ push → 客户端下次同步即见新版本
 
 
 四、风险提示
@@ -74,5 +71,6 @@
 [x] fnrc.json 标注 sync=github
 [x] README 改为 GitHub 同步说明
 [x] GitHub Pages 已开启
-[ ] （可选）论坛聚合申请：同步方式=GitHub，仓库 URL
-[ ] （可选）官方应用中心飞书表单
+[x] superproxy/FnDepot 已建并可同步
+[ ] （可选）论坛发帖 / 聚合申请：粘贴 drafts/promotion/论坛-社区源与上架发帖.txt
+[ ] （可选）官方应用中心：帮助中心应用生态表单（旧飞书链已 404）
