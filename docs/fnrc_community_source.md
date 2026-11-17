@@ -17,7 +17,8 @@
 ------------------
 
 【渠道 1】GitHub Pages 网页直玩
-  操作：Settings → Pages → 选 main 分支 /release 目录 → 开启
+  说明：GitHub 分支 Pages 只允许 / 或 /docs，不能直接选 /release。
+  本仓库用 Actions（.github/workflows/pages.yml）部署 release/。
   结果：https://superproxy.github.io/saltline/ 点开即玩
 
 【渠道 2】FN软仓社区源（主推，最快可见）
